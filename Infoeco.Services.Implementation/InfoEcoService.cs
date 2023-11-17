@@ -427,5 +427,16 @@ namespace Infoeco.Services.Implementation
                 await _context.SaveChangesAsync();
             }
         }
+
+        public async Task<BilanEntite?> AjoutEvtBilan(BilanEntite bilan)
+        {
+            if (_context.Bilan != null)
+            {
+                var inserted = await _context.Bilan.AddAsync(bilan);
+                await _context.SaveChangesAsync();
+                return inserted.Entity;
+            }
+            return null;
+        }
     }
 }
